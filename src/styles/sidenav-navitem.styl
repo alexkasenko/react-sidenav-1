@@ -6,27 +6,44 @@
         cursor: default;
     }
 
+    &.selected > .navitem {
+        border-left: 5px #2078E4 solid;
+
+        path:last-child {
+            fill: #2078E4;
+        }
+            
+    }
+
+    .navitem {
+        border-left: 5px #F1F1F1 solid;
+
+         .navicon > i {
+            font-size: 20px;
+        }
+    }
+
     &:hover > .navitem::after {
-        background: #fff;
-        opacity: .15;
+        background: #f8f8f9;
+        opacity: 1;
     }
 
     &.highlighted > .navitem::after,
     &:hover.highlighted > .navitem::after {
-        background: #000;
-        opacity: .2;
+        background:#f8f8f9;
+        opacity: 1;
     }
 
     &.highlighted.expanded > .navitem::after,
     &:hover.highlighted.expanded > .navitem::after {
-        background: #000;
-        opacity: .25;
+        background: #f8f8f9;
+        opacity: 1;
     }
 
     &.highlighted.selected.expanded > .navitem::after,
     &:hover.highlighted.selected.expanded > .navitem::after {
-        background: #000;
-        opacity: .2;
+        background: #f8f8f9;
+        opacity: 1;
     }
 
     &:hover > .navitem .navicon,
@@ -38,9 +55,9 @@
     &:hover > .navitem .navtext,
     &.highlighted > .navitem .navicon,
     &.highlighted > .navitem .navtext {
-        color: #fff;
+        color: #09091A;
         > * {
-            color: #fff;
+            color: #09091A;
         }
     }
 
@@ -75,25 +92,26 @@
 
     > .navitem .navicon,
     > .navitem .navtext {
-        color: #f9dcdd;
+        color: #09091A;
+        font-size: 16px;
         > * {
-            color: #f9dcdd;
+            color: #09091A;
         }
     }
 
     > .navitem .navicon {
-        display: block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         float: left;
-        width: 64px;
+        width: 50px;
         height: 50px;
         margin-right: -6px;
-        vertical-align: top;
         background-repeat: no-repeat;
         background-position: center center;
         background-color: transparent;
-        opacity: .7;
+        opacity: .85;
         line-height: 50px;
-        text-align: center;
     }
 
     > .navitem .navicon + .navtext {

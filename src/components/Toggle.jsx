@@ -1,7 +1,9 @@
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import React, { PureComponent } from 'react';
-import styles from './index.styl';
+import styles from '../styles/index.styl';
+import CollapseIcon from '../../examples/Default/collapseIcon';
+import ExpandIcon from '../../examples/Default/svg';
 
 class Toggle extends PureComponent {
     static propTypes = {
@@ -36,20 +38,24 @@ class Toggle extends PureComponent {
         } = this.props;
 
         return (
-            <Component
+            <div
                 {...props}
                 role="button"
-                className={cx(
-                    className,
-                    styles.sidenavToggle
-                )}
-                aria-expanded={expanded}
+                className={cx(styles.toggleWrapper)}
             >
-                <span className={styles.iconBar} />
-                <span className={styles.iconBar} />
-                <span className={styles.iconBar} />
-                {children}
-            </Component>
+                <Component
+                    {...props}
+                    role="button"
+                    className={cx(
+                        className,
+                        styles.sidenavToggle
+                    )}
+                    aria-expanded={expanded}
+                >
+                    {expanded ? <CollapseIcon style={{ margin: '0 4px' }} /> : <ExpandIcon style={{ margin: '0 4px' }} />}
+                    {children}
+                </Component>
+            </div>
         );
     }
 }

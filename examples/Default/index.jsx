@@ -1,28 +1,56 @@
+/* eslint no-template-curly-in-string: 0 */
 import Breadcrumbs from '@trendmicro/react-breadcrumbs';
-import { Button, ButtonGroup } from '@trendmicro/react-buttons';
-import Dropdown, { MenuItem } from '@trendmicro/react-dropdown';
 import ensureArray from 'ensure-array';
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
-import SideNav, { NavItem, NavIcon, NavText } from '../SideNav';
+import SideNav from '../SideNav';
+import generateMenu from './contentGenerator';
+
+// fake array for contentGenerator
+const generateContent = [];
 
 const Main = styled.main`
     position: relative;
     overflow: hidden;
-    transition: all .15s;
     padding: 0 20px;
-    margin-left: ${props => (props.expanded ? 240 : 64)}px;
+    margin-left: ${props => (props.expanded ? 260 : 64)}px;
+`;
+
+const NavHeader = styled.div`
+    display: ${props => (props.expanded ? 'flex' : 'none')};
+    white-space: nowrap;
+    background: transparent;
+    color: #fff;
+    align-items: center;
+
+    > * {
+        color: inherit;
+        background-color: inherit;
+    }
+`;
+
+// height: 20px + 10px + 10px = 40px
+const NavTitle = styled.div`
+    line-height: 44px;
+    background: transparent;
+    padding: 10px 0;
+    color: #09091A;
+    font-size: 16px;
+    height: 50px;
+    display: flex;
+    align-items: center;
 `;
 
 export default class extends PureComponent {
     state = {
-        selected: 'home',
-        expanded: false
+        selected: '/last-mile/tools/bm-apac/driver/channel-overview',
+        expanded: true
     };
 
     onSelect = (selected) => {
         this.setState({ selected: selected });
     };
+
     onToggle = (expanded) => {
         this.setState({ expanded: expanded });
     };
@@ -53,91 +81,23 @@ export default class extends PureComponent {
         );
     }
 
-    navigate = (pathname) => () => {
-        this.setState({ selected: pathname });
-    };
-
     render() {
         const { expanded, selected } = this.state;
 
         return (
-            <div>
-                <div
-                    style={{
-                        marginLeft: expanded ? 240 : 64,
-                        padding: '15px 20px 0 20px'
-                    }}
+            <div style={{ height: '100%' }}>
+                <SideNav
+                    onSelect={this.onSelect}
+                    onToggle={this.onToggle}
+                    expanded={expanded}
                 >
-                    <ButtonGroup>
-                        <Button btnStyle="flat" onClick={this.navigate('home')}>
-                            Home
-                        </Button>
-                        <Button btnStyle="flat" onClick={this.navigate('devices')}>
-                            Devices
-                        </Button>
-                        <Button btnStyle="flat" onClick={this.navigate('reports')}>
-                            Reports
-                        </Button>
-                        <Dropdown>
-                            <Dropdown.Toggle>
-                                Settings
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu>
-                                <MenuItem onClick={this.navigate('settings/policies')}>
-                                    Policies
-                                </MenuItem>
-                                <MenuItem onClick={this.navigate('settings/network')}>
-                                    Network
-                                </MenuItem>
-                            </Dropdown.Menu>
-                        </Dropdown>
-                    </ButtonGroup>
-                </div>
-                <SideNav onSelect={this.onSelect} onToggle={this.onToggle}>
-                    <SideNav.Toggle />
+                    <SideNav.Toggle >
+                        <NavHeader style={{ height: '50px' }} expanded={expanded}>
+                            <NavTitle>Side Navigation</NavTitle>
+                        </NavHeader>
+                    </SideNav.Toggle>
                     <SideNav.Nav selected={selected}>
-                        <NavItem eventKey="home">
-                            <NavIcon>
-                                <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em', verticalAlign: 'middle' }} />
-                            </NavIcon>
-                            <NavText style={{ paddingRight: 32 }} title="Home">
-                                Home
-                            </NavText>
-                        </NavItem>
-                        <NavItem eventKey="devices">
-                            <NavIcon>
-                                <i className="fa fa-fw fa-line-chart" style={{ fontSize: '1.75em', verticalAlign: 'middle' }} />
-                            </NavIcon>
-                            <NavText style={{ paddingRight: 32 }} title="Devices">
-                                Devices
-                            </NavText>
-                        </NavItem>
-                        <NavItem eventKey="reports">
-                            <NavIcon>
-                                <i className="fa fa-fw fa-list-alt" style={{ fontSize: '1.75em', verticalAlign: 'middle' }} />
-                            </NavIcon>
-                            <NavText style={{ paddingRight: 32 }} title="Reports">
-                                Reports
-                            </NavText>
-                        </NavItem>
-                        <NavItem eventKey="settings">
-                            <NavIcon>
-                                <i className="fa fa-fw fa-cogs" style={{ fontSize: '1.5em', verticalAlign: 'middle' }} />
-                            </NavIcon>
-                            <NavText style={{ paddingRight: 32 }} title="Settings">
-                                Settings
-                            </NavText>
-                            <NavItem eventKey="settings/policies">
-                                <NavText title="Policies">
-                                    Policies
-                                </NavText>
-                            </NavItem>
-                            <NavItem eventKey="settings/network">
-                                <NavText title="Network">
-                                    Network
-                                </NavText>
-                            </NavItem>
-                        </NavItem>
+                        {generateMenu(generateContent, this.onToggle)}
                     </SideNav.Nav>
                 </SideNav>
                 <Main expanded={expanded}>
