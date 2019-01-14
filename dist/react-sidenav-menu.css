@@ -1,4 +1,4 @@
-/*! react-sidenav-menu v0.5.0 | (c) 2019 Trend Micro Inc. | MIT | https://github.com/trendmicro-frontend/react-sidenav */
+/*! | (c) 2019 Trend Micro Inc. | MIT | https://github.com/trendmicro-frontend/react-sidenav */
 .sidenav-menu---sidenav---LAhfT {
   position: relative;
   top: 0;
@@ -6,6 +6,7 @@
   left: 0;
   z-index: 1006;
   width: 64px;
+  min-width: 64px;
   background: #fff;
   -webkit-box-shadow: 1px 0 20px -1px rgba(153,153,153,0.6);
   box-shadow: 1px 0 20px -1px rgba(153,153,153,0.6);
@@ -38,6 +39,7 @@
 }
 .sidenav-menu---sidenav---LAhfT.sidenav-menu---expanded---1http {
   width: 300px;
+  min-width: 300px;
   -webkit-box-shadow: 1px 0 20px -1px rgba(153,153,153,0.6);
   box-shadow: 1px 0 20px -1px rgba(153,153,153,0.6);
   overflow-y: hidden;
@@ -136,6 +138,7 @@
   padding: 7px 14px 7px 20px;
   line-height: 28px;
   font-size: 14px;
+  white-space: nowrap;
   background: #f8f8f9;
   outline: none;
 }

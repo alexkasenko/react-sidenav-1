@@ -172,7 +172,7 @@ class NavItem extends React.PureComponent {
                             <div style={{ display: 'flex', alignItems: 'center' }}>
                                 {navIcon ?
                                     <div {...navIconProps} className={cx(navIconClassName, styles.navicon)} />
-                                    : <i className="fa fa-fw" style={{ fontSize: '24px' }} />
+                                    : <div style={{ minWidth: '30px' }} />
                                 }
                                 {navText &&
                                 <div {...navTextProps} className={cx(navTextClassName, styles.navtext)} />
@@ -218,7 +218,7 @@ class NavItem extends React.PureComponent {
                     >
                         {navIcon ?
                             <div {...navIconProps} className={cx(navIconClassName, styles.navicon)} />
-                            : <i className="fa fa-fw" style={{ fontSize: '24px' }} />
+                            : <div style={{ minWidth: '30px' }} />
                         }
                         {navText &&
                         <div {...navTextProps} className={cx(navTextClassName, styles.navtext)} />
@@ -297,7 +297,7 @@ class NavItem extends React.PureComponent {
                     <div>
                         {navIcon ?
                             <div {...navIconProps} className={cx(navIconClassName, styles.navicon)} />
-                            : <i className="fa fa-fw" style={{ fontSize: '20px' }} />
+                            : <div style={{ minWidth: '30px' }} />
                         }
                         {navText &&
                             <div style={{ fontSize: '16px' }} {...navTextProps} className={cx(navTextClassName, styles.navtext)} />
